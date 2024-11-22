@@ -7,65 +7,93 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <style>
-      
-        
         .card {
-            border-radius: 8px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            height: auto;
         }
-        .accordion-button {
-            background-color: #4CAF50;
-            color: black;
+        .btn-primary {
+            background-color: #007bff;
         }
-        @media (max-width: 576px) {
-            .card {
-                width: 100%;
-                margin-top: 20px;
-            }
+        .form-floating input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.25rem rgba(38, 143, 255, 0.5);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
     </style>
 </head>
-<body class="bg-light">
-    <form action="login.html" method="POST">
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4" style="width: 100%; max-width: 400px;">
-        <h3 class="text-center text-white">Register</h3>
+    <body class="bg-light" style="background-image: url('assets/bg/bg_regist.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;width: 100%; height: 100vh;">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4" style="max-width: 400px; width: 100%;">
+            <h3 class="text-center">Register</h3>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingUsername" placeholder="Username">
-            <label for="floatingUsername">Username</label>
-        </div>
-        
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingEmail" placeholder="Email">
-            <label for="floatingEmail">Email</label>
-        </div>
+            <form action="login.html" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username" required>
+                    <label for="floatingUsername">Username</label>
+                </div>
 
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="Email" required>
+                    <label for="floatingEmail">Email</label>
+                </div>
 
-        <button class="btn btn-primary w-100 mb-3"><i class="bi bi-person-plus-fill"></i> Daftar</button>
-        
-        <p class="text-center">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>
 
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Persyaratan Akun
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        Minimal 8 karakter, mengandung huruf besar, angka, dan simbol.
+                <button class="btn btn-primary w-100 mb-3">Daftar</button>
+
+                <p class="text-center">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+            </form>
+
+            <!-- Modal untuk persyaratan akun -->
+            <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="termsModalLabel">Persyaratan Akun</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Minimal 8 karakter, mengandung huruf besar, angka, dan simbol.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast notification -->
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div id="registerToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Peringatan</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Pendaftaran gagal. Periksa data Anda dan coba lagi.
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <footer class="bg-dark text-white text-center py-3">
+        &copy; 22552011218_Sapari Putra Pamungkas_TIF 22 PWK.
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toast = new bootstrap.Toast(document.getElementById('registerToast'));
+        // Uncomment below line to test the toast
+        // toast.show();
+    </script>
 </body>
 </html>
